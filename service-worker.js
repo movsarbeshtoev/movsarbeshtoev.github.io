@@ -11,7 +11,23 @@ self.addEventListener('install', function(event) {
     caches.open(CACHE_NAME)
       .then(function(cache) {
         console.log('Кэш открыт');
-        return cache.addAll(urlsToCache);
+        
+        // Способ 1: Обработка каждого файла отдельно
+        const promises = urlsToCache.map(url => {
+          return cache.add(url).catch(error => {
+            console.error('Ошибка кэширования:', url, error);
+            // Продолжаем выполнение, даже если один файл не закэшировался
+            return Promise.resolve();
+          });
+        });
+        
+        return Promise.all(promises);
+      })
+      .then(() => {
+        console.log('Все файлы обработаны');
+      })
+      .catch(error => {
+        console.error('Ошибка установки Service Worker:', error);
       })
   );
 });
