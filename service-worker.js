@@ -3,7 +3,7 @@
 // Шаг 1: Установка и кэширование статических ресурсов
 const CACHE_NAME = 'my-cache-v1';
 const urlsToCache = [
-  '/',
+  '/public/icon0.svg',
   '/style.css',
   '/main.js',
   '/public'
