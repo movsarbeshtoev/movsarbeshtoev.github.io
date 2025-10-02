@@ -1,6 +1,3 @@
-// service-worker.js
-
-// Шаг 1: Установка и кэширование статических ресурсов
 const CACHE_NAME = 'my-cache-v1';
 const urlsToCache = [
   '/public/icon0.svg',
@@ -19,12 +16,10 @@ self.addEventListener('install', function(event) {
   );
 });
 
-// Шаг 2: Перехват сетевых запросов
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
-        // Возвращаем ресурс из кэша или делаем сетевой запрос
         if (response) {
           return response;
         }
