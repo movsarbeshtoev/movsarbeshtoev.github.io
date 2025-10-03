@@ -1,6 +1,9 @@
 const CACHE_NAME = 'my-cache-v1';
 const urlsToCache = [
   '/icon.png',
+  '/index.html',
+  '/about.html',
+  '/contacts',
   '/styles.css',
   '/main.js'
 ];
